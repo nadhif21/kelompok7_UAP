@@ -1,0 +1,424 @@
+#include <iostream>
+#include <ncurses\ncurses.h>
+#include <windows.h>
+
+#define SCREEN_WIDTH 52
+#define SCREEN_HEIGHT 29
+
+using namespace std;
+
+struct pertanyaan{
+		string psatu = "seekor rusa memiliki ? ";
+		char jwsatu[100]  = "teman dong ";
+		string pdua = "pantai tempat orang ? ";	
+		char jwdua[100] = "ramai lah masa sepi";	
+		string ptiga = "Yang sering dapat 100 saat ulangan ? ";
+		char jwtiga[100] = "kertas ujian hehe";
+		string pempat = "orang yang mimpin desa, biasa dipanggil ? ";
+		char jwempat[100] = "noleh kan ga budeg ";
+		string plima = "Senikmatnya makan di luar lebih nikmat makan di ? ";
+		char jwlima[100] = "telan lah";
+}qws;
+
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+COORD CursorPosition;
+
+int i,j;
+string op;
+
+void gotoxy(int x, int y)
+{
+	CursorPosition.X = x;
+	CursorPosition.Y = y;
+	SetConsoleCursorPosition(console, CursorPosition);
+}
+
+void drawBorder(){
+	gotoxy(0,0);cout<<"----------------------------------------------------";
+	gotoxy(0,SCREEN_HEIGHT);cout<<"----------------------------------------------------";
+	gotoxy(53,19); cout<<" created by kelompok 7 ";
+	gotoxy(53,21); cout<<" Ananda Karunia Putri (2217051152) ";
+	gotoxy(53,22); cout<<" Muhammad Nadhif Nanditama (2257051003) ";
+	for(int i=0; i<SCREEN_HEIGHT; i++){
+		gotoxy(0,i); cout<<"|";
+		gotoxy(SCREEN_WIDTH,i); cout<<"|";
+	}
+}
+
+void tamat(){
+	
+		gotoxy(10,5); cout<<" --------------------- "; 
+		gotoxy(10,6); cout<<" |  udahan dulu yaa  | "; 
+		gotoxy(10,7); cout<<" --------------------- "; 			
+
+		gotoxy(10,10); cout<<"nanti kalo ga capek buat lagi"; 
+		gotoxy(10,11); cout<<"TERIMAKASIH UDAH MAININ HEHE"; 	
+		getch(); 
+		exit(0);
+	
+}
+void menu(){
+	drawBorder();
+		gotoxy(10,1); cout<<" -------------------------- "; 
+		gotoxy(10,2); cout<<" | tebak tebakan B ajah   | "; 
+		gotoxy(10,3); cout<<" -------------------------- "; 			
+		
+		
+			
+		gotoxy(9,26); cout<<" pencet 1 buat mulai "; 	
+		getch();
+	
+}
+void menang(){
+	system("cls");
+	drawBorder();
+		initscr();
+		for( int i = 10 ; i > 5 ; i --){
+		mvprintw(3,5, "     ");
+		mvprintw(3,i, "         $$$$");
+		mvprintw(4,i, "        $$__$");
+		mvprintw(5,i, "       $___$$");
+		mvprintw(6,i, "       $___$$");
+		mvprintw(7,i, "       $$___$$");
+		mvprintw(8,i, "        $____$$");
+		mvprintw(9,i, "        $$____$$$");
+		mvprintw(10,i, "         $$_____$$");
+		mvprintw(11,i, "          $$______$$");
+		mvprintw(12,i, "          $_______$$");
+		mvprintw(13,i, "    $$$$$$$________$$");
+		mvprintw(14,i, "  $$$_______________$$$$$$");
+		mvprintw(15,i, " $$____$$$$____________$$$");
+		mvprintw(16,i, " $___$$$__$$$____________$$");
+		mvprintw(17,i, " $$________$$$____________$");
+		mvprintw(18,i, "  $$____$$$$$$____________$");
+		mvprintw(19,i, "  $$$$$$$____$$___________$");
+		mvprintw(20,i, "  $$_______$$$$___________$");
+		mvprintw(21,i, "   $$$$$$$$$__$$_________$$");
+		mvprintw(22,i, "    $________$$$$_____$$$$");
+		mvprintw(23,i, "    $$____$$$$$$____$$$$$$");
+		mvprintw(24,i, "     $$$$$$____$$__$$");
+		mvprintw(25,i, "       $_____$$$_$$$");
+		mvprintw(26,i, "        $$$$$$$$$$");
+		
+		Sleep(100);
+		refresh();
+	
+	}	
+		mvprintw(22,38, " pencet apa aja buat lanjut ");
+		getch();
+		endwin();
+		
+		
+	
+}
+
+void kalah(){
+	drawBorder();
+		gotoxy(10,5); cout<<" --------------------- "; 
+		gotoxy(10,6); cout<<" |     CUPUUUUU      | "; 
+		gotoxy(10,7); cout<<" --------------------- "; 			
+
+		gotoxy(10,10); cout<<"hadeh hadeh belajar lagi deck"; 
+		gotoxy(10,11); cout<<"pulang aja sana";	
+		getch();
+		exit(0);
+	
+}
+
+void loading(){
+	drawBorder();
+	initscr();
+	
+  for( i = 17 ; i < 27 ; i ++){
+  		
+  		mvprintw(10,17, "LOADING");
+  		mvprintw(10,i, ".");
+  		refresh();
+  		Sleep(100);
+  	}
+  endwin();
+
+}
+
+void mulai5(){
+	drawBorder();
+		gotoxy(10,1); cout<<"==============================="; 
+		gotoxy(13,2);cout<<"GAME TEBAK TEBAKAN KEKNYA ";
+		gotoxy(10,3);cout<<"===============================";
+	
+		
+		gotoxy(55,10);cout<<"LEVEL : 5\n\n";
+		gotoxy(1,10);cout<<qws.plima;
+		gotoxy(12,25);cin>>op;
+}
+
+void mulai4(){
+	drawBorder();
+		gotoxy(10,1); cout<<"==============================="; 
+		gotoxy(13,2);cout<<"GAME TEBAK TEBAKAN KEKNYA ";
+		gotoxy(10,3);cout<<"===============================";
+	
+		
+		gotoxy(55,10);cout<<"LEVEL : 4\n\n";
+		gotoxy(2,10);cout<<qws.pempat;
+		gotoxy(12,25);cin>>op;
+}
+
+void mulai3(){
+	drawBorder();
+		gotoxy(10,1); cout<<"==============================="; 
+		gotoxy(13,2);cout<<"GAME TEBAK TEBAKAN KEKNYA ";
+		gotoxy(10,3);cout<<"===============================";
+	
+		
+		gotoxy(55,10);cout<<"LEVEL : 3\n\n";
+		gotoxy(3,10);cout<<qws.ptiga;
+		gotoxy(12,25);cin>>op;
+}
+
+void mulai2(){
+	drawBorder();
+		gotoxy(10,1); cout<<"==============================="; 
+		gotoxy(13,2);cout<<"GAME TEBAK TEBAKAN KEKNYA ";
+		gotoxy(10,3);cout<<"===============================";
+	
+		
+		gotoxy(55,10);cout<<"LEVEL : 2\n\n";
+		gotoxy(12,10);cout<<qws.pdua;
+		gotoxy(12,25);cin>>op;
+		
+		
+	
+}
+
+void mulai1(){
+		gotoxy(10,1); cout<<"==============================="; 
+		gotoxy(13,2);cout<<"GAME TEBAK TEBAKAN KEKNYA ";
+		gotoxy(10,3);cout<<"===============================";
+	
+		
+		gotoxy(55,10);cout<<"LEVEL : 1\n\n";
+		gotoxy(12,10);cout<<qws.psatu;
+		gotoxy(12,25);cin>>op;
+	}
+
+		
+		
+		
+
+
+int main(){
+	drawBorder();
+	ulang:
+	menu();
+		cin>>j;
+				
+				if(j==1){
+				system("cls");
+				loading();
+				}else{
+					system("cls");
+					gotoxy (10,10);cout<<"YANG BETUL";
+					getch();
+					goto ulang;
+				}
+		mulai1();
+		
+			if(op=="teman"){
+				drawBorder();
+				menang();
+				mulai2();
+							} 
+		
+		else if ( op != "teman"){
+				system("cls");
+				drawBorder();
+				gotoxy(10,9);cout<<"coba lagiee";
+				mulai1();
+				
+		
+		if ( op == "teman"){
+			drawBorder();
+				menang();
+				mulai2();
+		} 
+		else if ( op != "teman"){
+		system("cls");
+		drawBorder();
+		gotoxy(10,9);cout<<"coba sekali lagiee";
+				mulai1();
+				
+		if ( op == "teman"){
+			drawBorder();
+				menang();
+				mulai2();
+		} else if ( op != "teman"){
+		system("cls");
+		drawBorder();
+		
+		gotoxy (12,9); cout<<"jawabannya tu "<<qws.jwsatu;
+		kalah();
+		
+						}
+		
+	
+			}
+	}
+		if(op=="ramai"){
+				drawBorder();
+				menang();
+				mulai3();
+							} 
+		
+		else if ( op != "ramai"){
+				system("cls");
+				drawBorder();
+				gotoxy(10,9);cout<<"coba lagiee";
+				mulai2();
+		
+		if ( op == "ramai"){
+			drawBorder();
+				menang();
+				mulai3();
+		} 
+		else if ( op != "ramai"){
+		system("cls");
+		drawBorder();
+				gotoxy(10,9);cout<<"coba sekali lagiee";
+				mulai2();
+				
+		if ( op == "ramai"){
+			drawBorder();
+				menang();
+				mulai3();
+		} else if ( op != "ramai"){
+		system("cls");
+		drawBorder();
+		
+		gotoxy (12,9); cout<<"jawabannya tu "<<qws.jwdua;
+		kalah();
+		
+						}
+		
+	
+			}
+	}
+	
+	if(op=="kertas"){
+				drawBorder();
+				menang();
+				mulai4();
+							} 
+		
+		else if ( op != "kertas"){
+				system("cls");
+				drawBorder();
+				gotoxy(10,9);cout<<"coba lagiee";
+				mulai3();
+		
+		if ( op == "kertas"){
+			drawBorder();
+				menang();
+				mulai4();
+		} 
+		else if ( op != "kertas"){
+		system("cls");
+		drawBorder();
+		gotoxy(10,9);cout<<"coba sekali lagiee";
+				mulai3();
+		if ( op == "kertas"){
+			drawBorder();
+				menang();
+				mulai4();
+		} else if ( op != "kertas"){
+		system("cls");
+		drawBorder();
+		
+		gotoxy (12,9); cout<<"jawabannya tu "<<qws.jwtiga;
+		kalah();
+		
+						}
+		
+	
+			}
+	}
+	
+	if(op=="noleh"){
+				drawBorder();
+				menang();
+				mulai5();
+							} 
+		
+		else if ( op != "noleh"){
+				system("cls");
+				drawBorder();
+				gotoxy(10,9);cout<<"coba lagiee";
+				mulai4();
+		
+		if ( op == "noleh"){
+			drawBorder();
+				menang();
+				mulai5();
+		} 
+		else if ( op != "noleh"){
+		system("cls");
+		drawBorder();
+		gotoxy(10,9);cout<<"coba sekali lagiee";
+				mulai4();
+		if ( op == "noleh"){
+			drawBorder();
+				menang();
+				mulai5();
+		} else if ( op != "noleh"){
+		system("cls");
+		drawBorder();
+		
+		gotoxy (12,9); cout<<"jawabannya tu "<<qws.jwempat;
+		kalah();
+		
+						}
+		
+	
+			}
+	}
+	
+	if(op=="telan"){
+				drawBorder();
+				menang();
+				tamat();
+							} 
+		
+		else if ( op != "telan"){
+				system("cls");
+				drawBorder();
+				gotoxy(10,9);cout<<"coba lagiee";
+				mulai5();
+		
+		if ( op == "telan"){
+			drawBorder();
+				menang();
+				tamat();
+		} 
+		else if ( op != "telan"){
+		system("cls");
+		drawBorder();
+		gotoxy(10,9);cout<<"coba sekali lagiee";
+				mulai5();
+		if ( op == "telan"){
+			drawBorder();
+				menang();
+				tamat();
+		} else if ( op != "telan"){
+		system("cls");
+		drawBorder();
+		
+		gotoxy (12,9); cout<<"jawabannya tu "<<qws.jwlima;
+		kalah();
+		
+						}
+		
+	
+			}
+	}
+							
+}
